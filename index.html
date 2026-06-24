@@ -24,17 +24,80 @@
 
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body{
 
     background:linear-gradient(135deg,#111,#222,#000);
 
     color:white;
 
+    overflow-x: hidden;
+
+}
+
+/* Header Navigation */
+header {
+  position: sticky;
+  top: 0;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+  z-index: 1000;
+}
+
+nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: #FFD700;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #FFD700;
+  border-radius: 2px;
 }
 
 .hero{
 
-    min-height:100vh;
+    min-height: 100vh;
 
     display:flex;
 
@@ -42,7 +105,9 @@ body{
 
     justify-content:center;
 
-    padding:30px;
+    padding: 20px;
+
+    margin-top: 60px;
 
 }
 
@@ -60,7 +125,7 @@ body{
 
     border-radius:20px;
 
-    padding:40px;
+    padding: 30px 20px;
 
     text-align:center;
 
@@ -70,7 +135,7 @@ body{
 
 .flag{
 
-    font-size:70px;
+    font-size:60px;
 
     margin-bottom:15px;
 
@@ -80,7 +145,7 @@ h1{
 
     color:#FFD700;
 
-    font-size:3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
 
     margin-bottom:10px;
 
@@ -90,7 +155,7 @@ h2{
 
     color:#fff;
 
-    font-size:1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
 
     margin-bottom:25px;
 
@@ -104,7 +169,7 @@ h2{
 
     margin-bottom:30px;
 
-    font-size:18px;
+    font-size: clamp(16px, 2vw, 18px);
 
 }
 
@@ -112,7 +177,7 @@ h2{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 
     gap:15px;
 
@@ -124,10 +189,18 @@ h2{
 
     background:rgba(255,255,255,0.08);
 
-    padding:20px;
+    padding: 20px 15px;
 
     border-radius:12px;
 
+    transition: all 0.3s ease;
+
+}
+
+.card:hover {
+  background:rgba(255,255,255,0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(255,215,0,0.15);
 }
 
 .card h3{
@@ -136,6 +209,12 @@ h2{
 
     margin-bottom:10px;
 
+    font-size: clamp(16px, 2vw, 18px);
+
+}
+
+.card p {
+  font-size: clamp(14px, 1.5vw, 16px);
 }
 
 .apply{
@@ -144,7 +223,7 @@ h2{
 
     color:#000;
 
-    padding:15px 35px;
+    padding: 12px 30px;
 
     text-decoration:none;
 
@@ -156,13 +235,21 @@ h2{
 
     margin-top:20px;
 
-    transition:0.3s;
+    transition: 0.3s;
+
+    font-size: clamp(14px, 2vw, 16px);
+
+    border: none;
+
+    cursor: pointer;
 
 }
 
 .apply:hover{
 
     transform:scale(1.05);
+
+    box-shadow: 0 5px 20px rgba(255,215,0,0.4);
 
 }
 
@@ -172,6 +259,12 @@ h2{
 
     color:#ccc;
 
+    font-size: clamp(14px, 2vw, 16px);
+
+}
+
+.contact p {
+  margin: 8px 0;
 }
 
 .footer{
@@ -180,8 +273,104 @@ h2{
 
     color:#888;
 
-    font-size:14px;
+    font-size: clamp(12px, 1.5vw, 14px);
 
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(17, 17, 17, 0.98);
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    display: none;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  header {
+    padding: 12px 15px;
+  }
+
+  .hero {
+    margin-top: 50px;
+    padding: 15px;
+    min-height: auto;
+  }
+
+  .poster {
+    padding: 25px 15px;
+  }
+
+  .flag {
+    font-size: 50px;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 18px 12px;
+  }
+
+  .apply {
+    padding: 12px 25px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .flag {
+    font-size: 40px;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+
+  .poster {
+    padding: 20px 12px;
+    border-radius: 15px;
+  }
+
+  .benefits {
+    gap: 10px;
+  }
+
+  .card {
+    padding: 15px 10px;
+  }
+
+  .apply {
+    padding: 10px 20px;
+  }
+
+  .contact {
+    font-size: 14px;
+  }
 }
 
 </style>
@@ -190,7 +379,23 @@ h2{
 
 <body>
 
-<section class="hero">
+<header>
+  <nav>
+    <div class="logo">Elite Nightlife</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="home">
 
 <div class="poster">
 
@@ -210,7 +415,7 @@ international experience and attractive earning opportunities.
 
 </p>
 
-<div class="benefits">
+<div class="benefits" id="benefits">
 
 <div class="card">
 
@@ -268,7 +473,7 @@ Apply Now
 
 </a>
 
-<div class="contact">
+<div class="contact" id="contact">
 
 <p>WhatsApp: +962 789 174 751</p>
 
@@ -285,6 +490,23 @@ Elite Nightlife Agency © 2026
 </div>
 
 </section>
+
+<script>
+// Mobile menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+// Close menu when link is clicked
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+</script>
 
 </body>
 
